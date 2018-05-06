@@ -1,0 +1,33 @@
+<%= form_with(model: post, local: true) do |form| %>
+  <% if post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field form-group">
+    <%= form.label "Current Mood:" %>
+    <%= form.text_field :title, class: 'form-control' %>
+  </div>
+
+  <div class="field form-group">
+    <%= form.label "Notes:" %>
+    <%= form.text_area :body, class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Make post private?" %>
+    <%= form.check_box :visibility, {}, 1, 0 %>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <%= form.submit 'Gab', :class => 'btn btn-primary' %>
+  </div>
+<% end %>
